@@ -22,7 +22,7 @@ namespace Web.API.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IActionResult Get()
         {
-            throw new Core.CrossCuttingConcerns.Exceptions.Types.ValidationException("Validation exception message.");
+           throw new Core.CrossCuttingConcerns.Exceptions.Types.ValidationException("Validation exception message.");
            return Ok();
         }
     }

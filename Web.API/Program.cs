@@ -1,5 +1,7 @@
 using Core;
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
+using Core.DependencyResolvers;
+using Core.Utilities.Ioc;
 namespace Web.API
 {
     public class Program
@@ -13,9 +15,9 @@ namespace Web.API
             
             builder.Services.AddControllers();
             builder.Services.AddHttpContextAccessor();
-            builder.Services.RegisterCoreModule(builder.Configuration);
 
-
+            // Core katmanýndaki DI container nesnelerini bu þekilde ekliyoruz.
+            builder.Services.RegisterCoreLayer(new ICoreModule[] { new CoreModule() });
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
