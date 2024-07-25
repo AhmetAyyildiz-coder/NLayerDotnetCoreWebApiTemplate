@@ -36,4 +36,11 @@ public static class LoggerExtensions
 
         logger.Warning(logMessage);
     }
+
+    public static void LogError(this ILogger logger, Exception ex, string message, [CallerMemberName] string callerName = "")
+    {
+        logger.Error(ex, $"Method: {callerName} - {message}");
+    }
+
+    
 }

@@ -1,10 +1,10 @@
-﻿using Core.CrossCuttingConcerns.Logging.Serilog.ConfigurationModels;
-using Core.CrossCuttingConcerns.Logging.Serilog.Messages;
+﻿using Core.Logging.Serilog;
+using Core.Logging.Serilog.ConfigurationModels;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
 
-namespace Core.CrossCuttingConcerns.Logging.Serilog.Logger;
+namespace Core.Logging.Logger;
 
 public class MsSqlLogger : LoggerServiceBase
 {
@@ -12,10 +12,15 @@ public class MsSqlLogger : LoggerServiceBase
     {
         MsSqlConfiguration logConfiguration =
             configuration.GetSection("SeriLogConfigurations:MsSqlConfiguration").Get<MsSqlConfiguration>()
-            ?? throw new Exception(SerilogMessages.NullOptionsMessage);
+            ?? throw new Exception("Serilog mssqlconnection");
 
         MSSqlServerSinkOptions sinkOptions =
-            new() { TableName = logConfiguration.TableName, AutoCreateSqlTable = logConfiguration.AutoCreateSqlTable };
+            new()
+            {
+                TableName = logConfiguration.TableName,
+                AutoCreateSqlTable
+            = logConfiguration.AutoCreateSqlTable
+            };
 
         ColumnOptions columnOptions = new();
 
