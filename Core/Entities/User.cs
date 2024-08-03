@@ -1,9 +1,10 @@
-﻿namespace Core.Entities;
+﻿using Core.Persistence.Repositories;
 
-public class User : IEntity
+namespace Core.Entities;
+
+public class User : Entity<int>
 {
     
-    public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
@@ -17,5 +18,8 @@ public class User : IEntity
     public byte[] PasswordHash { get; set; }
 
     public bool Status { get; set; }
-    
+
+    public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; } = null!;
+
+
 }

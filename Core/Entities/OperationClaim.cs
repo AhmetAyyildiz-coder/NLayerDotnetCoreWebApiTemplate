@@ -1,7 +1,8 @@
-﻿namespace Core.Entities;
+﻿using Core.Persistence.Repositories;
 
-public class OperationClaim : IEntity
+namespace Core.Entities;
+
+public class OperationClaim : Core.Persistence.Repositories.Entity<int>
 {
-    public int Id { get; set; }
     public string Name { get; set; }
 }

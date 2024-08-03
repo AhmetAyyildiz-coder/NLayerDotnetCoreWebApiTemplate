@@ -1,8 +1,9 @@
-﻿namespace Core.Entities;
+﻿using Core.Persistence.Repositories;
 
-public class UserOperationClaim : IEntity
+namespace Core.Entities;
+
+public class UserOperationClaim : Entity<int>
 {
-    public int Id { get; set; }
     public  int UserId { get; set; }
     public  int OperationClaimId { get; set; }
     public virtual User User { get; set; }
